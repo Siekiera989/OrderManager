@@ -1,9 +1,12 @@
 ﻿<Application x:Class="OrderManager.DesktopClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:OrderManager.DesktopClient"
-             StartupUri="MainWindow.xaml">
+             xmlns:vm="clr-namespace:OrderManager.DesktopClient.ViewModel"
+             StartupUri="MainWindow.xaml"
+             DispatcherUnhandledException="Application_DispatcherUnhandledException">
     <Application.Resources>
-         
+        <vm:ViewModelLocator x:Key="Locator"/>
     </Application.Resources>
 </Application>

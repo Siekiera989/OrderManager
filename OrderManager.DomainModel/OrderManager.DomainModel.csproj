@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6243274E-2442-4D7B-BAFF-B19A7B68D9B0}</ProjectGuid>
+    <ProjectGuid>{1A2B8293-C093-4AD7-AAAE-7F71BBDE1F99}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OrderManager.DomainModel</RootNamespace>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,17 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Item.cs" />
-    <Compile Include="Status.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="OrderType.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Priority.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Employee.cs" />
-    <Compile Include="UserRole.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderItem.cs" />
+    <Compile Include="Enums\OrderType.cs" />
+    <Compile Include="Package.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="Enums\Priority.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Enums\Status.cs" />
+    <Compile Include="Enums\UserRole.cs" />
+    <Compile Include="Repositories\ICompanyRepository.cs" />
+    <Compile Include="Repositories\ICustomerRepository.cs" />
+    <Compile Include="Repositories\IEmployeeRepository.cs" />
+    <Compile Include="Repositories\IOrderRepository.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

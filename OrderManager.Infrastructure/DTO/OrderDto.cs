@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrderManager.DomainModel;
 using OrderManager.DomainModel.Enums;
 
-namespace OrderManager.DomainModel
+namespace OrderManager.Infrastructure.DTO
 {
-    public class Order
+    public class OrderDto
     {
-        [Key]
         public Guid ID { get; set; }
         public int Number { get; set; }
-        public int Month => IssueDate.Month;
-        public int Year => IssueDate.Year;
-        public string OrderNumber => $"PO {Number}/{Month}/{Year}/{OrderType}";
+        public int Month { get; set; }
+        public int Year {get; set; }
+        public string OrderNumber { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime ConfirmationDate { get; set; }
         public DateTime DueDate { get; set; }
@@ -27,13 +26,6 @@ namespace OrderManager.DomainModel
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }
         public ObservableCollection<OrderItem> Items { get; set; }
-        public decimal TotalValue => Items.Sum(item => (item.Amount * item.UnitPrice));
-        
-        public override string ToString() => $"PO {Number}/{Month}/{Year}/{OrderType}";
 
-        public Order()
-        {
-            Items=new ObservableCollection<OrderItem>();
-        }
     }
 }

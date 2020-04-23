@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderManager.DomainModel
+namespace OrderManager.DomainModel.Repositories
 {
-    public enum UserRole
+    public interface IOrderRepository
     {
-        Employee = 1,
-        Customer = 2,
-        Admin = 999
+        Task<List<Order>>  GetAllOrders();
     }
 }
