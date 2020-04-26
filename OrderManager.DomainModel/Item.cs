@@ -6,34 +6,23 @@ using System.Threading.Tasks;
 
 namespace OrderManager.DomainModel
 {
-    public abstract class Item
+    public class Item
     {
-        public string ProductCode { get; protected set; }
-        public string Name { get; protected set; }
-        public decimal UnitQuantity { get; protected set; }
-        public string Unit { get; protected set; }
-        public decimal UnitPrice { get; protected set; }
-        public decimal Amount { get; protected set; }
-        public int ItemFK { get; set; }
+        public int ItemID { get; set; }
+        public string ProductCode { get; private set; }
+        public string Name { get; private set; }
+        public decimal UnitQuantity { get; private set; }
+        public string Unit { get; private set; }
+        public decimal UnitPrice { get; private set; }
+        public decimal MinimumLT { get; private set; }
+        public decimal MOQ { get; private set; } //Minimum Order Quantity
 
-        //Minimum Lead Time - najkrótszy czas kiedy można dostarczyć dany towar.
-        //Może również służyć do tego, aby określić całkowity czas do dostarczenia gotowego produktu,
-        //jeśli stworzenie gotowego produktu wymaga kilku etapów
-        public decimal MinimumLT { get; protected set; }
-
-        protected Item(string productCode, string name, string unit, decimal unitPrice, decimal amount)
-        {
-            CreateNewItem( productCode, name,  unit, unitPrice, amount);
-        }
-
-        public void CreateNewItem( string productCode, string name, string unit, decimal unitPrice,
-            decimal amount)
+        public void CreateNewItem(string productCode, string name, string unit, decimal unitPrice)
         {
             ProductCode = productCode;
             Name = name;
             Unit = unit;
             UnitPrice = unitPrice;
-            Amount = amount;
         }
 
         public void SetName(string productCode, string productName)
@@ -45,7 +34,6 @@ namespace OrderManager.DomainModel
         public void SetUnitQuantity(decimal unitQuantity) => UnitQuantity = unitQuantity;
         public void SetUnit(string unit) => Unit = unit;
         public void SetUnitPrice(decimal unitPrice) => UnitPrice = unitPrice;
-        public void SetAmount(decimal amount) => Amount = amount;
         public void SetMinimumLT(decimal minimumLT) => MinimumLT = minimumLT;
     }
 }

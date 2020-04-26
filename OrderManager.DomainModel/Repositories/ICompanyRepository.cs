@@ -8,7 +8,7 @@ namespace OrderManager.DomainModel.Repositories
 {
     public interface ICompanyRepository
     {
-        Task<IEnumerable<Company>> GetAllCompanies();
+        Task<List<Company>> GetAllCompanies();
         Task<Company> GetByIdAsync(int companyId);
         Task<Company> GetByName(string name);
         Task CreateNewCompany(Company newCompany);

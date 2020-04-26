@@ -10,11 +10,10 @@ namespace OrderManager.Infrastructure.DTO
     public class CompanyDto
     {
         public int ID { get; set; }
-        public string Name { get; private set; }
-        public string Country { get; private set; }
-        public string City { get; private set; }
-        public string Street { get; private set; }
-        public string ZipCode { get; private set; }
-        public List<Customer> ExternalCompanyEmployees { get; set; } = new List<Customer>();
+        public string Name { get; set; }
+        public string Country { get;set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string ZipCode { get;  set; }
     }
 }

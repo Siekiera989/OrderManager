@@ -17,15 +17,15 @@ namespace OrderManager.Infrastructure.Service
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
 
-        public CompanyService(ICompanyRepository companyRepository)
+        public CompanyService(ICompanyRepository companyRepository, MapperConfig mapper)
         {
             _companyRepository = companyRepository;
-            _mapper = MapperConfig.Initialize();
+            _mapper = mapper.Initialize();
         }
-        public async Task<IEnumerable<CompanyDto>> GetAllCompanies()
+        public async Task<List<CompanyDto>> GetAllCompanies()
         {
             var companies = await _companyRepository.GetAllCompanies();
-            return _mapper.Map<IEnumerable<CompanyDto>>(companies);
+            return _mapper.Map<List<CompanyDto>>(companies);
         }
 
         public async Task<CompanyDto> GetByIdAsync(int companyId)

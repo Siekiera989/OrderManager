@@ -14,11 +14,10 @@ namespace OrderManager.DomainModel
         public string City { get; private set; }
         public string Street { get; private set; }
         public string ZipCode { get; private set; }
-        public List<Customer> ExternalCompanyEmployees { get; set; } //stworzony tylko na potrzeby klucza
 
         public Company()
         {
-            ExternalCompanyEmployees = new List<Customer>();
+            
         }
         public Company(string name, string country, string city, string street, string zipCode)
         {
@@ -27,7 +26,7 @@ namespace OrderManager.DomainModel
             City = city;
             Street = street;
             ZipCode = zipCode;
-            ExternalCompanyEmployees = new List<Customer>();
+            
         }
 
         public void SetName(string name)

@@ -10,6 +10,6 @@ namespace OrderManager.Infrastructure.Interfaces
 {
     public interface IOrderService
     {
-        Task<List<OrderDto>> GetAllOrders();
+        Task<IEnumerable<OrderDto>> GetAllOrders();
     }
 }

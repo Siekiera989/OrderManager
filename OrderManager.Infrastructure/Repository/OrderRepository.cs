@@ -23,11 +23,12 @@ namespace OrderManager.Infrastructure.Services
             _dbContext = dbContext;
         }
 
-        public async Task<List<Order>> GetAllOrders() 
-            => await _dbContext.Orders
-                .Include(x=>x.Items)
-                .Include(x=>x.Employee)
-                .Include(x=>x.Customer)
+        public async Task<IEnumerable<Order>> GetAllOrders()
+        {
+             var test = await _dbContext.Orders
                 .ToListAsync();
+            return test;
+        }
+           
     }
 }

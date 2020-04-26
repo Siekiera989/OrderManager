@@ -15,10 +15,10 @@ namespace OrderManager.Infrastructure.Service
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
 
-        public CustomerService(ICustomerRepository customerRepository)
+        public CustomerService(ICustomerRepository customerRepository,MapperConfig mapper)
         {
             _customerRepository = customerRepository;
-            _mapper = MapperConfig.Initialize();
+            _mapper = mapper.Initialize();
         }
         public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
         {
@@ -34,27 +34,27 @@ namespace OrderManager.Infrastructure.Service
 
         public async Task CreateNewAsync(Customer newCustomer)
         {
-            var customer = await _customerRepository.GetAsyncById(newCustomer.PersonID);
+            var customer = await _customerRepository.GetAsyncById(newCustomer.Person.PersonID);
             if (customer != null) throw new Exception("Customer already exists");
 
-            customer = new Customer(Guid.NewGuid(), newCustomer.FirstName, newCustomer.LastName,
-                newCustomer.EmailAdress, newCustomer.PhoneNumber, newCustomer.UserRole);
+            customer = new Customer(Guid.NewGuid(), newCustomer.Person.FirstName, newCustomer.Person.LastName,
+                newCustomer.Person.EmailAdress, newCustomer.Person.PhoneNumber, newCustomer.Person.UserRole);
             await _customerRepository.CreateNewAsync(customer);
 
         }
 
         public async Task EditCustomer(Customer customer)
         {
-            var cust = await _customerRepository.GetAsyncById(customer.PersonID);
+            var cust = await _customerRepository.GetAsyncById(customer.Person.PersonID);
 
-            if (cust.FirstName != customer.FirstName || cust.LastName != customer.LastName)
-                cust.SetPersonName(customer.FirstName, customer.LastName);
+            if (cust.Person.FirstName != customer.Person.FirstName || cust.Person.LastName != customer.Person.LastName)
+                cust.Person.SetPersonName(customer.Person.FirstName, customer.Person.LastName);
 
-            if (cust.EmailAdress!=customer.EmailAdress||cust.PhoneNumber!=customer.PhoneNumber)
-                cust.SetPersonData(customer.EmailAdress,customer.PhoneNumber);
+            if (cust.Person.EmailAdress !=customer.Person.EmailAdress ||cust.Person.PhoneNumber !=customer.Person.PhoneNumber)
+                cust.Person.SetPersonData(customer.Person.EmailAdress,customer.Person.PhoneNumber);
 
-            if (cust.UserRole != customer.UserRole)
-               cust.SetUserRole(customer.UserRole);
+            if (cust.Person.UserRole != customer.Person.UserRole)
+               cust.Person.SetUserRole(customer.Person.UserRole);
 
             if (!cust.Company.Equals(customer.Company))
                 cust.SetCompany(customer.Company);

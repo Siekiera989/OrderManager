@@ -4,14 +4,18 @@ using OrderManager.Infrastructure.DTO;
 
 namespace OrderManager.Infrastructure.Config
 {
-    public static class MapperConfig
+    public class MapperConfig
     {
-        public static IMapper Initialize()
+        public IMapper Initialize()
             => new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<OrderDto, Order>();
-                cfg.CreateMap<EmployeeDto, Employee>();
-                cfg.CreateMap<CompanyDto, Company>();
+                cfg.CreateMap<Company, CompanyDto>();
+                cfg.CreateMap<Customer, CustomerDto>();
+                cfg.CreateMap<Employee, EmployeeDto>();
+                cfg.CreateMap<Item, ItemDto>();
+                cfg.CreateMap<Order, OrderDto>();
+                cfg.CreateMap<OrderItem, OrderItemDto>();
+                cfg.CreateMap<Person, PersonDto>();
             }).CreateMapper();
     }
 }

@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OrderManager.DomainModel;
-using OrderManager.DomainModel.Enums;
 
 namespace OrderManager.Infrastructure.DTO
 {
-    public class CustomerDto
+    public class OrderItemDto
     {
-        public Guid CustomerID { get; set; }
-        public Company Company { get; set; }
-        public Person Person { get; set; }
+        public int OrderItemID { get; set; }
+        public decimal Amount { get; set; }
+        public Item Item { get; set; }
     }
 }

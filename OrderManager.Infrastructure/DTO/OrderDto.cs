@@ -25,7 +25,7 @@ namespace OrderManager.Infrastructure.DTO
         public Priority OrderPriority { get; set; }
         public Customer Customer { get; set; }
         public Employee Employee { get; set; }
-        public ObservableCollection<OrderItem> Items { get; set; }
+        public List<OrderItem> Items { get; set; }
 
     }
 }

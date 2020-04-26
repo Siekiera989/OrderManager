@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 
 namespace OrderManager.DomainModel
 {
-    public class Employee : Person
+    public class Employee
     {
+        public Guid EmployeeID { get; set; }
         public string EmployeeNumber { get; set; } //jest loginem do aplikacji
         public string Password { get; set; }
+        public Person Person { get; set; }
 
         public void AddNewEmployee(string employeeNumber, string password)
         {
-            PersonID = Guid.NewGuid();
+            Person.PersonID = Guid.NewGuid();
             EmployeeNumber = employeeNumber;
             Password = password;
         }
 
-        public Employee(Guid personID, string firstName, string lastName, string emailAdress, string phoneNumber, UserRole userRole) : base(personID, firstName, lastName, emailAdress, phoneNumber, userRole){}
-
+        public Employee(Guid personID, string firstName, string lastName, string emailAdress, string phoneNumber, UserRole userRole) {}
         public Employee()
         {
             

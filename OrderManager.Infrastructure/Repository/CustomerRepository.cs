@@ -23,7 +23,7 @@ namespace OrderManager.Infrastructure.Repository
             => await _dbContext.Customers.ToListAsync();
 
         public async Task<Customer> GetAsyncById(Guid personId) 
-            => await Task.FromResult(_dbContext.Customers.SingleOrDefault(x => x.PersonID == personId));
+            => await Task.FromResult(_dbContext.Customers.SingleOrDefault(x => x.Person.PersonID == personId));
 
         public async Task CreateNewAsync(Customer newCustomer) 
             => await _dbContext.Customers.AddAsync(newCustomer);

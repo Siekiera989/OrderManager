@@ -16,7 +16,7 @@ namespace OrderManager.Infrastructure.Repository
         {
             _dbContext = dbContext;
         }
-        public async Task<IEnumerable<Company>> GetAllCompanies()
+        public async Task<List<Company>> GetAllCompanies()
             => await _dbContext.Companies.ToListAsync();
 
         public async Task<Company> GetByIdAsync(int companyId)

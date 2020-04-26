@@ -15,10 +15,10 @@ namespace OrderManager.Infrastructure.Service
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
 
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository, MapperConfig mapper)
         {
             _employeeRepository = employeeRepository;
-            _mapper = MapperConfig.Initialize();
+            _mapper = mapper.Initialize();
         }
         public async Task<bool> Login(string employeeNumber, string password)
         {
@@ -53,16 +53,16 @@ namespace OrderManager.Infrastructure.Service
         {
             var user = await _employeeRepository.GetByIdAsync(personID);
 
-            if ((string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName))||
-                (user.FirstName!=firstName||user.LastName!=lastName))
-                user.SetPersonName(firstName,lastName);
+            if ((string.IsNullOrEmpty(user.Person.FirstName) || string.IsNullOrEmpty(user.Person.LastName))||
+                (user.Person.FirstName!=firstName|| user.Person.LastName != lastName))
+                user.Person.SetPersonName(firstName,lastName);
             
-            if ((string.IsNullOrEmpty(user.EmailAdress) || string.IsNullOrEmpty(user.PhoneNumber))||
-                (user.EmailAdress!=emailAdress||user.PhoneNumber!=phoneNumber))
-                user.SetPersonData(emailAdress,phoneNumber);
+            if ((string.IsNullOrEmpty(user.Person.EmailAdress) || string.IsNullOrEmpty(user.Person.PhoneNumber))||
+                (user.Person.EmailAdress!=emailAdress|| user.Person.PhoneNumber!=phoneNumber))
+                user.Person.SetPersonData(emailAdress,phoneNumber);
 
-            if (user.UserRole!=userRole)
-                user.SetUserRole(userRole);
+            if (user.Person.UserRole!=userRole)
+                user.Person.SetUserRole(userRole);
 
 
             await _employeeRepository.EditUser(user);

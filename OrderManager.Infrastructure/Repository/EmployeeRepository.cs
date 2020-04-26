@@ -20,7 +20,7 @@ namespace OrderManager.Infrastructure.Repository
             => await Task.FromResult(_dbContext.Employees.SingleOrDefault(x => x.EmployeeNumber == employeeNumber));
 
         public async Task<Employee> GetByIdAsync(Guid personID) 
-            => await Task.FromResult(_dbContext.Employees.SingleOrDefault(x => x.PersonID==personID));
+            => await Task.FromResult(_dbContext.Employees.SingleOrDefault(x => x.Person.PersonID==personID));
 
         public async Task AddAsync(Employee employee)
         {

@@ -5,9 +5,8 @@ using OrderManager.DomainModel.Enums;
 
 namespace OrderManager.DomainModel
 {
-    public abstract class Person
+    public class Person
     {
-        [Key]
         public Guid PersonID { get; set; }
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
@@ -15,7 +14,6 @@ namespace OrderManager.DomainModel
         public string EmailAdress { get; protected set; }
         public string PhoneNumber { get; protected set; }
         public UserRole UserRole { get; protected set; }
-        public List<Order> OwnedOrders { get; set; }
 
         public void SetPersonName(string firstName, string lastName)
         {
@@ -34,15 +32,15 @@ namespace OrderManager.DomainModel
             UserRole = newRole;
         }
 
-       
+
         protected Person(Guid ID, string firstName, string lastName, string emailAdress, string phoneNumber, UserRole userRole)
         {
             PersonID = ID;
 
-            SetPersonName(firstName,lastName);
-            
-            SetPersonData(emailAdress,phoneNumber);
-            
+            SetPersonName(firstName, lastName);
+
+            SetPersonData(emailAdress, phoneNumber);
+
             SetUserRole(userRole);
         }
 

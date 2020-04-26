@@ -10,7 +10,7 @@ namespace OrderManager.Infrastructure.Interfaces
 {
     public interface ICompanyService
     {
-        Task<IEnumerable<CompanyDto>> GetAllCompanies();
+        Task<List<CompanyDto>> GetAllCompanies();
         Task<CompanyDto> GetByIdAsync(int companyId);
         Task CreateNewCompany(Company newCompany);
         Task UpadteCompany(Company company);
