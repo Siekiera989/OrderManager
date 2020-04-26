@@ -29,10 +29,18 @@ namespace OrderManager.DesktopClient.ViewModel
             SimpleIoc.Default.Register<ApplicationDbContext>();
             SimpleIoc.Default.Register<MapperConfig>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<NewCustomerViewModel>();
         }
 
         public static MainViewModel Main 
             => ServiceLocator.Current.GetInstance<MainViewModel>();
+
+        public static LoginViewModel LoginViewModel
+            => ServiceLocator.Current.GetInstance<LoginViewModel>();
+
+        public static NewCustomerViewModel NewCustomerViewModel
+            => ServiceLocator.Current.GetInstance<NewCustomerViewModel>();
 
         public static void Cleanup()
         {

@@ -13,11 +13,13 @@ namespace OrderManager.Infrastructure.Service
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
 
-        public CustomerService(ICustomerRepository customerRepository,MapperConfig mapper)
+        public CustomerService(ICustomerRepository customerRepository,MapperConfig mapper, ICompanyRepository companyRepository)
         {
             _customerRepository = customerRepository;
+            _companyRepository = companyRepository;
             _mapper = mapper.Initialize();
         }
         public async Task<IEnumerable<CustomerDto>> GetAllCustomers()
@@ -26,24 +28,24 @@ namespace OrderManager.Infrastructure.Service
             return _mapper.Map<IEnumerable<CustomerDto>>(customers);
         }
 
-        public async Task<CustomerDto> GetAsyncById(Guid personId)
+        public async Task<CustomerDto> GetAsyncById(int personId)
         {
             var customer = await _customerRepository.GetAsyncById(personId);
             return _mapper.Map<CustomerDto>(customer);
         }
 
-        public async Task CreateNewAsync(Customer newCustomer)
+        public async Task CreateNewAsync(CustomerDto newCustomer)
         {
             var customer = await _customerRepository.GetAsyncById(newCustomer.Person.PersonID);
             if (customer != null) throw new Exception("Customer already exists");
 
-            customer = new Customer(Guid.NewGuid(), newCustomer.Person.FirstName, newCustomer.Person.LastName,
+            customer = new Customer(newCustomer.Person.FirstName, newCustomer.Person.LastName,
                 newCustomer.Person.EmailAdress, newCustomer.Person.PhoneNumber, newCustomer.Person.UserRole);
             await _customerRepository.CreateNewAsync(customer);
 
         }
 
-        public async Task EditCustomer(Customer customer)
+        public async Task EditCustomer(CustomerDto customer)
         {
             var cust = await _customerRepository.GetAsyncById(customer.Person.PersonID);
 
@@ -57,11 +59,17 @@ namespace OrderManager.Infrastructure.Service
                cust.Person.SetUserRole(customer.Person.UserRole);
 
             if (!cust.Company.Equals(customer.Company))
-                cust.SetCompany(customer.Company);
+            {
+                var company = await _companyRepository.GetByIdAsync(customer.Company.ID);
+                if (company != null) throw new Exception("Cannot find company");
+
+                cust.SetCompany(company);
+            }
+            
 
             await _customerRepository.EditCustomer(cust);
         }
 
-        public async Task DeleteCustomer(Guid personId) => await _customerRepository.DeleteCustomer(personId);
+        public async Task DeleteCustomer(int personId) => await _customerRepository.DeleteCustomer(personId);
     }
 }

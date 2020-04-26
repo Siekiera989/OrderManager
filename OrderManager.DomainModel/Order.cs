@@ -7,7 +7,7 @@ namespace OrderManager.DomainModel
 {
     public class Order
     {
-        public Guid ID { get; set; }
+        public int ID { get; set; }
         public int Number { get; set; }
         public int Month => IssueDate.Month;
         public int Year => IssueDate.Year;
@@ -19,8 +19,8 @@ namespace OrderManager.DomainModel
         public OrderType OrderType { get; set; }
         public Status OrderStatus { get; set; }
         public Priority OrderPriority { get; set; }
-        public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
+        public Customer Customer { get; set; } = new Customer();
+        public Employee Employee { get; set; } = new Employee();
         public List<OrderItem> Items { get; set; }
         public decimal TotalValue => Items.Sum(item => (item.Amount * item.Item.UnitPrice));
 

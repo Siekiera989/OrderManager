@@ -10,10 +10,11 @@ namespace OrderManager.Infrastructure.Interfaces
 {
     public interface IEmployeeService
     {
-        Task<EmployeeDto> GetAccount(Guid userId);
+        Task<EmployeeDto> GetAccountById(int userId);
+        Task<EmployeeDto> GetAccountByEmployeeNumber(string employeeNumber);
         Task<bool> Login(string employeeNumber, string password);
         Task Register(string employeeNumber, string password);
-        Task EditUser(Guid personID, string firstName, string lastName, 
+        Task EditUser(int personID, string firstName, string lastName, 
             string emailAdress, string phoneNumber, UserRole userRole);
     }
 }

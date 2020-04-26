@@ -7,9 +7,9 @@ namespace OrderManager.DomainModel.Repositories
     public interface ICustomerRepository
     {
         Task<IEnumerable<Customer>> GetAllCustomers();
-        Task<Customer> GetAsyncById(Guid personId);
+        Task<Customer> GetAsyncById(int personId);
         Task CreateNewAsync(Customer newCustomer);
         Task EditCustomer(Customer customer);
-        Task DeleteCustomer(Guid personId);
+        Task DeleteCustomer(int personId);
     }
 }

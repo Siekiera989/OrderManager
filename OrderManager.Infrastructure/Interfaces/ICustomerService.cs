@@ -11,9 +11,9 @@ namespace OrderManager.Infrastructure.Interfaces
     public interface ICustomerService
     {
         Task<IEnumerable<CustomerDto>> GetAllCustomers();
-        Task<CustomerDto> GetAsyncById(Guid personId);
-        Task CreateNewAsync(Customer newCustomer);
-        Task EditCustomer(Customer customer);
-        Task DeleteCustomer(Guid personId);
+        Task<CustomerDto> GetAsyncById(int personId);
+        Task CreateNewAsync(CustomerDto newCustomer);
+        Task EditCustomer(CustomerDto customer);
+        Task DeleteCustomer(int personId);
     }
 }

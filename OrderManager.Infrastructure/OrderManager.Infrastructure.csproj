@@ -186,9 +186,9 @@
     <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IEmployeeService.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
-    <Compile Include="Migrations\20200426101235_first.cs" />
-    <Compile Include="Migrations\20200426101235_first.designer.cs">
-      <DependentUpon>20200426101235_first.cs</DependentUpon>
+    <Compile Include="Migrations\20200426135147_intial.cs" />
+    <Compile Include="Migrations\20200426135147_intial.designer.cs">
+      <DependentUpon>20200426135147_intial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -25,11 +25,16 @@ namespace OrderManager.Infrastructure.Repository
         public async Task<Company> GetByName(string name)
             => await Task.FromResult(_dbContext.Companies.SingleOrDefault(x => x.Name == name));
 
-        public async Task CreateNewCompany(Company newCompany) => await _dbContext.Companies.AddAsync(newCompany);
+        public async Task CreateNewCompany(Company newCompany)
+        {
+            await _dbContext.Companies.AddAsync(newCompany);
+            await _dbContext.SaveChangesAsync();
+        }
 
         public async Task UpadteCompany(Company company)
         {
             _dbContext.Companies.Update(company);
+            await _dbContext.SaveChangesAsync();
             await Task.CompletedTask;
         }
     }

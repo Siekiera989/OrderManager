@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace OrderManager.Infrastructure.Migrations
 {
-    public partial class first : Migration
+    public partial class intial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,7 +47,8 @@ namespace OrderManager.Infrastructure.Migrations
                 name: "Persons",
                 columns: table => new
                 {
-                    PersonID = table.Column<Guid>(nullable: false),
+                    PersonID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     EmailAdress = table.Column<string>(nullable: true),
@@ -63,9 +64,10 @@ namespace OrderManager.Infrastructure.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    CustomerID = table.Column<Guid>(nullable: false),
+                    CustomerID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     CompanyID = table.Column<int>(nullable: true),
-                    PersonID = table.Column<Guid>(nullable: true)
+                    PersonID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -88,10 +90,11 @@ namespace OrderManager.Infrastructure.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    EmployeeID = table.Column<Guid>(nullable: false),
+                    EmployeeID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     EmployeeNumber = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    PersonID = table.Column<Guid>(nullable: true)
+                    PersonID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -108,7 +111,8 @@ namespace OrderManager.Infrastructure.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Number = table.Column<int>(nullable: false),
                     IssueDate = table.Column<DateTime>(nullable: false),
                     ConfirmationDate = table.Column<DateTime>(nullable: false),
@@ -117,8 +121,8 @@ namespace OrderManager.Infrastructure.Migrations
                     OrderType = table.Column<int>(nullable: false),
                     OrderStatus = table.Column<int>(nullable: false),
                     OrderPriority = table.Column<int>(nullable: false),
-                    CustomerID = table.Column<Guid>(nullable: true),
-                    EmployeeID = table.Column<Guid>(nullable: true)
+                    CustomerID = table.Column<int>(nullable: true),
+                    EmployeeID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -145,7 +149,7 @@ namespace OrderManager.Infrastructure.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Amount = table.Column<decimal>(nullable: false),
                     ItemID = table.Column<int>(nullable: true),
-                    OrderID = table.Column<Guid>(nullable: true)
+                    OrderID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

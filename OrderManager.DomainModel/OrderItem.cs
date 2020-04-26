@@ -12,7 +12,7 @@ namespace OrderManager.DomainModel
         public int OrderItemID{get;set;}
         public decimal Amount { get; private set; }
         public bool IsMOQ => Amount >= Item.MOQ;
-        public Item Item { get; set; }
+        public Item Item { get; set; } = new Item();
 
         public OrderItem()
         {

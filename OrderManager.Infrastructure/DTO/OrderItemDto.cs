@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OrderManager.DomainModel;
+﻿using OrderManager.DomainModel;
 
 namespace OrderManager.Infrastructure.DTO
 {
@@ -11,6 +6,6 @@ namespace OrderManager.Infrastructure.DTO
     {
         public int OrderItemID { get; set; }
         public decimal Amount { get; set; }
-        public Item Item { get; set; }
+        public ItemDto Item { get; set; }
     }
 }

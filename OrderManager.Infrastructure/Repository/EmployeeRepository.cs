@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using OrderManager.DomainModel;
 using OrderManager.DomainModel.Repositories;
@@ -19,19 +18,21 @@ namespace OrderManager.Infrastructure.Repository
         public async Task<Employee> GetAsync(string employeeNumber) 
             => await Task.FromResult(_dbContext.Employees.SingleOrDefault(x => x.EmployeeNumber == employeeNumber));
 
-        public async Task<Employee> GetByIdAsync(Guid personID) 
+        public async Task<Employee> GetByIdAsync(int personID) 
             => await Task.FromResult(_dbContext.Employees.SingleOrDefault(x => x.Person.PersonID==personID));
 
         public async Task AddAsync(Employee employee)
         {
             await _dbContext.Employees.AddAsync(employee);
+            await _dbContext.SaveChangesAsync();
             await Task.CompletedTask;
         }
 
         public async Task EditUser(Employee employee)
         {
              _dbContext.Employees.Update(employee);
-             await Task.CompletedTask;
+            await _dbContext.SaveChangesAsync();
+            await Task.CompletedTask;
         }
     }
 }

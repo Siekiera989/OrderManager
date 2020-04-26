@@ -7,13 +7,13 @@ namespace OrderManager.DomainModel
 {
     public class Person
     {
-        public Guid PersonID { get; set; }
-        public string FirstName { get; protected set; }
-        public string LastName { get; protected set; }
+        public int PersonID { get; set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
         public string FullName => $"{LastName},{FirstName}";
-        public string EmailAdress { get; protected set; }
-        public string PhoneNumber { get; protected set; }
-        public UserRole UserRole { get; protected set; }
+        public string EmailAdress { get;  private set; }
+        public string PhoneNumber { get; private set; }
+        public UserRole UserRole { get;  private set; }
 
         public void SetPersonName(string firstName, string lastName)
         {
@@ -33,10 +33,8 @@ namespace OrderManager.DomainModel
         }
 
 
-        protected Person(Guid ID, string firstName, string lastName, string emailAdress, string phoneNumber, UserRole userRole)
+        public Person(string firstName, string lastName, string emailAdress, string phoneNumber, UserRole userRole)
         {
-            PersonID = ID;
-
             SetPersonName(firstName, lastName);
 
             SetPersonData(emailAdress, phoneNumber);
@@ -45,7 +43,7 @@ namespace OrderManager.DomainModel
         }
 
 
-        protected Person()
+        public Person()
         {
         }
     }

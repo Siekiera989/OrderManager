@@ -19,5 +19,6 @@ namespace OrderManager.Infrastructure.Config
         {
             optionsBuilder.UseSqlite(@"Data Source=.\OrdersDemoDb.db;");
         }
+
     }
 }

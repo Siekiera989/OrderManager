@@ -44,15 +44,15 @@ namespace OrderManager.Infrastructure.Migrations
 
             modelBuilder.Entity("OrderManager.DomainModel.Customer", b =>
                 {
-                    b.Property<Guid>("CustomerID")
+                    b.Property<int>("CustomerID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("CompanyID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("PersonID")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("PersonID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("CustomerID");
 
@@ -65,9 +65,9 @@ namespace OrderManager.Infrastructure.Migrations
 
             modelBuilder.Entity("OrderManager.DomainModel.Employee", b =>
                 {
-                    b.Property<Guid>("EmployeeID")
+                    b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("EmployeeNumber")
                         .HasColumnType("TEXT");
@@ -75,8 +75,8 @@ namespace OrderManager.Infrastructure.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("PersonID")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("PersonID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("EmployeeID");
 
@@ -119,21 +119,21 @@ namespace OrderManager.Infrastructure.Migrations
 
             modelBuilder.Entity("OrderManager.DomainModel.Order", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ConfirmationDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("CustomerID")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("CustomerID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("EmployeeID")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("EmployeeID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("TEXT");
@@ -174,8 +174,8 @@ namespace OrderManager.Infrastructure.Migrations
                     b.Property<int?>("ItemID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("OrderID")
-                        .HasColumnType("TEXT");
+                    b.Property<int?>("OrderID")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("OrderItemID");
 
@@ -188,9 +188,9 @@ namespace OrderManager.Infrastructure.Migrations
 
             modelBuilder.Entity("OrderManager.DomainModel.Person", b =>
                 {
-                    b.Property<Guid>("PersonID")
+                    b.Property<int>("PersonID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("EmailAdress")
                         .HasColumnType("TEXT");

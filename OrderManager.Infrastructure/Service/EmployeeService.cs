@@ -42,13 +42,21 @@ namespace OrderManager.Infrastructure.Service
             await _employeeRepository.AddAsync(user);
         }
 
-        public async Task<EmployeeDto> GetAccount(Guid userId)
+        public async Task<EmployeeDto> GetAccountById(int userId)
         {
             var user = await _employeeRepository.GetByIdAsync(userId);
             return _mapper.Map<EmployeeDto>(user);
         }
 
-        public async Task EditUser(Guid personID, string firstName="", string lastName="", string emailAdress="", string phoneNumber="",
+        public async Task<EmployeeDto> GetAccountByEmployeeNumber(string employeeNumber)
+        {
+            var user = await _employeeRepository.GetAsync(employeeNumber);
+            if (user == null) throw new Exception("User doesn't exists");
+
+            return _mapper.Map<EmployeeDto>(user);
+        }
+
+        public async Task EditUser(int personID, string firstName="", string lastName="", string emailAdress="", string phoneNumber="",
             UserRole userRole=UserRole.Employee)
         {
             var user = await _employeeRepository.GetByIdAsync(personID);
